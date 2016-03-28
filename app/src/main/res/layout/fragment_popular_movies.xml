@@ -14,4 +14,6 @@
         android:layout_height="wrap_content"
         android:text="Hello World!" />
 
+    <include layout="@layout/the_movie_db_panel" />
+
 </RelativeLayout>
