@@ -6,4 +6,4 @@
 /build
 /captures
 
-app/src/main/res/api/apikey.conf
+app/src/main/res/values/apikey.xml

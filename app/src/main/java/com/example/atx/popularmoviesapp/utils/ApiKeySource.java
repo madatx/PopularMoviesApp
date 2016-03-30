@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.example.atx.popularmoviesapp.R;
 
-public class Util {
+public class ApiKeySource {
 
     private static String getApiKeyFromFile(Context context){
         try {
