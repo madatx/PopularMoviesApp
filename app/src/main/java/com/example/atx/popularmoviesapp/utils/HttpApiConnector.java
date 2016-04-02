@@ -1,9 +1,8 @@
 package com.example.atx.popularmoviesapp.utils;
 
-import android.net.Uri;
 import android.util.Log;
 
-import com.example.atx.popularmoviesapp.callbacks.IRequestBuilder;
+import com.example.atx.popularmoviesapp.interfaces.IRequestHandler;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
@@ -63,7 +62,7 @@ public class HttpApiConnector {
         } catch (IOException e) {}
     }
 
-    public static String request(IRequestBuilder builder){
+    public static String request(IRequestHandler builder){
         return getResponse(builder.getRequestString());
     }
 }

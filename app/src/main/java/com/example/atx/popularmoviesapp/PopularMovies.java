@@ -6,10 +6,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.atx.popularmoviesapp.callbacks.IAsyncCallback;
-import com.example.atx.popularmoviesapp.callbacks.IRequestBuilder;
-import com.example.atx.popularmoviesapp.callbacks.ThemovieDBRequestBuilder;
+import com.example.atx.popularmoviesapp.interfaces.IAsyncCallback;
+import com.example.atx.popularmoviesapp.interfaces.IRequestHandler;
 import com.example.atx.popularmoviesapp.callbacks.UiAsyncCallback;
+import com.example.atx.popularmoviesapp.tasks.MovieRequestTask;
 import com.example.atx.popularmoviesapp.utils.ApiKeySource;
 
 public class PopularMovies extends AppCompatActivity {
@@ -23,8 +23,8 @@ public class PopularMovies extends AppCompatActivity {
 
         String key = ApiKeySource.getApiKey(this);
 
-        IRequestBuilder builder = new ThemovieDBRequestBuilder(key,
-                ThemovieDBRequestBuilder.MODE_TOP_RATED);
+        IRequestHandler builder = new ThemovieDBRequestHandler(key,
+                ThemovieDBRequestHandler.MODE_TOP_RATED);
         IAsyncCallback callback = new UiAsyncCallback();
 
         new MovieRequestTask(callback, builder).execute();
