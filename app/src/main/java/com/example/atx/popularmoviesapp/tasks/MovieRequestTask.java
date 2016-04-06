@@ -2,9 +2,12 @@ package com.example.atx.popularmoviesapp.tasks;
 
 import android.os.AsyncTask;
 
+import com.example.atx.popularmoviesapp.MovieInfo;
 import com.example.atx.popularmoviesapp.interfaces.IAsyncCallback;
 import com.example.atx.popularmoviesapp.interfaces.IRequestHandler;
 import com.example.atx.popularmoviesapp.utils.HttpApiConnector;
+
+import java.util.List;
 
 
 public class MovieRequestTask extends AsyncTask<Void, Void, String> {
@@ -25,7 +28,7 @@ public class MovieRequestTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        requestBuilder.parseResponse(s);
-        callback.setResult(s);
+        List<MovieInfo> result = requestBuilder.parseResponse(s);
+        callback.setResult(result);
     }
 }

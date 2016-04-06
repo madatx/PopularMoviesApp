@@ -1,8 +1,12 @@
 package com.example.atx.popularmoviesapp.utils;
 
+import android.content.Context;
+import android.media.Image;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.example.atx.popularmoviesapp.interfaces.IRequestHandler;
+import com.squareup.picasso.Picasso;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
@@ -64,5 +68,13 @@ public class HttpApiConnector {
 
     public static String request(IRequestHandler builder){
         return getResponse(builder.getRequestString());
+    }
+
+
+    private static String BASE_IMAGE_SERVICE_URL = "http://image.tmdb.org/t/p/w185/";
+
+    public static void setSourceImage(Context context, String imageUrl, ImageView view){
+        String targetUrl = BASE_IMAGE_SERVICE_URL + imageUrl;
+        Picasso.with(context).load(targetUrl).into(view);
     }
 }

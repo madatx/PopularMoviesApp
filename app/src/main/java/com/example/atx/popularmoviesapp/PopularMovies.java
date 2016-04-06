@@ -20,14 +20,6 @@ public class PopularMovies extends AppCompatActivity {
         setContentView(R.layout.activity_popular_movies);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        String key = ApiKeySource.getApiKey(this);
-
-        IRequestHandler builder = new ThemovieDBRequestHandler(key,
-                ThemovieDBRequestHandler.MODE_TOP_RATED);
-        IAsyncCallback callback = new UiAsyncCallback();
-
-        new MovieRequestTask(callback, builder).execute();
     }
 
     @Override

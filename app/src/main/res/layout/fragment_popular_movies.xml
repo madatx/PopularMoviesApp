@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,13 +7,28 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.atx.popularmoviesapp.PopularMoviesFragment"
-    tools:showIn="@layout/activity_popular_movies">
+    tools:showIn="@layout/activity_popular_movies"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
 
-    <include layout="@layout/the_movie_db_panel" />
+        <GridView
+            android:id="@+id/movies_grid_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="auto_fit"
+            android:verticalSpacing="5dp"
+            android:stretchMode="columnWidth"
+            android:orientation="vertical"
+            android:scrollbars="horizontal"
+            android:layout_weight="1"
+            android:gravity="fill" />
 
-</RelativeLayout>
+    <!--<ImageView-->
+        <!--android:id="@+id/the_movie_db_pic"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:maxHeight="10dp"-->
+        <!--android:src="@drawable/resource_powered_by_tmdb"-->
+        <!--android:layout_weight="0"/>-->
+
+</LinearLayout>

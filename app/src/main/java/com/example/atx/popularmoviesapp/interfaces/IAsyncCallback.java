@@ -1,7 +1,9 @@
 package com.example.atx.popularmoviesapp.interfaces;
 
-import java.util.Map;
+import com.example.atx.popularmoviesapp.MovieInfo;
+
+import java.util.List;
 
 public interface IAsyncCallback {
-    void setResult(String result);
+    void setResult(List<MovieInfo> result);
 }

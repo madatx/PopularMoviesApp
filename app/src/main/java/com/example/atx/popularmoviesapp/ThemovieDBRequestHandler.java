@@ -14,6 +14,8 @@ import java.util.List;
 
 public class ThemovieDBRequestHandler implements IRequestHandler {
 
+    private static final String THIS_FILE = ThemovieDBRequestHandler.class.getName();
+
     public static final String MODE_POPULAR = "popular";
     public static final String MODE_TOP_RATED = "top_rated";
 
@@ -43,12 +45,12 @@ public class ThemovieDBRequestHandler implements IRequestHandler {
     public List<MovieInfo> parseResponse(String response) {
         List<MovieInfo> res = new LinkedList<>();
         try {
-            final String RES = "results";
+            final String RES    = "results";
             final String POSTER = "poster_path";
             final String OVERVIEW = "overview";
-            final String DATE = "release_date";
-            final String TITLE = "title";
-            final String VOTE = "vote_average";
+            final String DATE   = "release_date";
+            final String TITLE  = "title";
+            final String VOTE   = "vote_average";
 
             JSONObject moviesJson = new JSONObject(response);
 
@@ -65,15 +67,14 @@ public class ThemovieDBRequestHandler implements IRequestHandler {
                 info.rating = movie.getString(VOTE);
                 info.releaseDdate = movie.getString(DATE);
 
-                Log.d("JSON", info.title +" " + info.rating + " " + info.imageLink);
+                Log.d(THIS_FILE, info.title +" " + info.rating + " " + info.imageLink);
                 res.add(info);
             }
-
-
-        } catch (JSONException e1) {
-            e1.printStackTrace();
+        } catch (JSONException ex) {
+            Log.e(THIS_FILE, "Json parse error", ex);
+            ex.printStackTrace();
         }
 
-        return null;
+        return res;
     }
 }
