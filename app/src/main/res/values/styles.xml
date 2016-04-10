@@ -17,4 +17,29 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="DetailMovieImageView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">@dimen/detail_activity_image_min_width</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:paddingLeft">@dimen/detail_activity_image_padding</item>
+        <item name="android:paddingRight">@dimen/detail_activity_image_padding</item>
+        <item name="android:paddingBottom">@dimen/detail_activity_image_padding</item>
+    </style>
+
+    <style name="DetailMovieTitleFrame" parent="AppTheme">
+        <item name="android:background">@color/colorMovieTitleBackground</item>
+    </style>
+
+    <style name="DetailMovieTitleText" parent="AppTheme">
+        <item name="android:textSize">@dimen/detail_activity_movie_title_text_size</item>
+        <item name="android:textColor">@color/colorMovieTitleText</item>
+        <item name="android:paddingLeft">@dimen/detail_activity_title_padding_left</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="DetailMovieYear" parent="AppTheme">
+        <item name="android:textSize">@dimen/detail_activity_movie_year_text_size</item>
+    </style>
+
 </resources>

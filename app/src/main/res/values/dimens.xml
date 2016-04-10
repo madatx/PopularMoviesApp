@@ -3,4 +3,17 @@
     <dimen name="activity_horizontal_margin">5dp</dimen>
     <dimen name="activity_vertical_margin">5dp</dimen>
     <dimen name="fab_margin">5dp</dimen>
+
+
+    <dimen name="main_activity_items_padding">0dp</dimen>
+
+    <dimen name="detail_activity_image_padding_top">5dp</dimen>
+    <dimen name="detail_activity_image_padding">15dp</dimen>
+    <dimen name="detail_activity_image_min_width">100dp</dimen>
+
+    <dimen name="detail_activity_movie_title_text_size">35dp</dimen>
+    <dimen name="detail_activity_movie_year_text_size">25dp</dimen>
+
+    <dimen name="detail_activity_title_padding_left">30dp</dimen>
+
 </resources>

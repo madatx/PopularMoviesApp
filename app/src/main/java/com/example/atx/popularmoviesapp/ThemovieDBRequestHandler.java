@@ -65,7 +65,7 @@ public class ThemovieDBRequestHandler implements IRequestHandler {
                 info.description = movie.getString(OVERVIEW);
                 info.title = movie.getString(TITLE);
                 info.rating = movie.getString(VOTE);
-                info.releaseDdate = movie.getString(DATE);
+                info.releaseDate = movie.getString(DATE);
 
                 Log.d(THIS_FILE, info.title +" " + info.rating + " " + info.imageLink);
                 res.add(info);

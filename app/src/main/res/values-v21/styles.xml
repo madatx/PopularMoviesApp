@@ -6,4 +6,10 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+
+    <style name="DetailMovieYearFormat">
+        <item name="android:textSize">@dimen/detail_activity_movie_title_text_size</item>
+        <item name="android:textColor">@color/colorMovieTitleText</item>
+        <item name="android:backgroundTint">@color/colorMovieTitleBackground</item>
+    </style>
 </resources>

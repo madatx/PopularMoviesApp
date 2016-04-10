@@ -71,10 +71,12 @@ public class HttpApiConnector {
     }
 
 
-    private static String BASE_IMAGE_SERVICE_URL = "http://image.tmdb.org/t/p/w185/";
+    private static String BASE_IMAGE_SERVICE_URL = "http://image.tmdb.org/t/p/w342/";
 
     public static void setSourceImage(Context context, String imageUrl, ImageView view){
-        String targetUrl = BASE_IMAGE_SERVICE_URL + imageUrl;
-        Picasso.with(context).load(targetUrl).into(view);
+        if (view != null) {
+            String targetUrl = BASE_IMAGE_SERVICE_URL + imageUrl;
+            Picasso.with(context).load(targetUrl).into(view);
+        }
     }
 }

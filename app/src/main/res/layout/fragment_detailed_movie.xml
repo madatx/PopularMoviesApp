@@ -1,0 +1,71 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/main_activity_items_padding"
+    tools:context="com.example.atx.popularmoviesapp.DetailedMovieActivityFragment"
+    tools:showIn="@layout/activity_detailed_movie"
+    android:orientation="vertical"
+    android:layout_gravity="top">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        style="@style/DetailMovieTitleFrame">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/movie_title"
+            style="@style/DetailMovieTitleText"
+            android:text="LOL" />
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:paddingTop="@dimen/detail_activity_image_padding">
+
+        <ImageView
+            style="@style/DetailMovieImageView"
+            android:id="@+id/poster_image"
+            android:layout_weight="0" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/DetailMovieYear"
+                android:id="@+id/year_info" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/duration_info" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rating" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:padding="@dimen/activity_horizontal_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/description_info" />
+
+
+</LinearLayout>
