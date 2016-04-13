@@ -43,9 +43,10 @@ public class PopularMoviesFragment extends Fragment {
     public void refreshGrid(IAsyncCallback callback){
         String key = ApiKeySource.getApiKey(getActivity());
         IRequestHandler builder = new ThemovieDBRequestHandler(key,
-                ThemovieDBRequestHandler.MODE_TOP_RATED);
+                ThemovieDBRequestHandler.MODE_POPULAR);
 
         new MovieRequestTask(callback, builder).execute();
+
     }
 
     private int getImageWidth(){

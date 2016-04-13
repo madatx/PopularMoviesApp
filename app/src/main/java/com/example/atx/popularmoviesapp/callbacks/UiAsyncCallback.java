@@ -17,6 +17,7 @@ public class UiAsyncCallback implements IAsyncCallback {
     private GridView view;
     private Context context;
     private int viewSize;
+    private String error = null;
 
     public UiAsyncCallback(Context context, GridView view, int viewSize){
         this.view = view;
@@ -29,7 +30,22 @@ public class UiAsyncCallback implements IAsyncCallback {
     public void setResult(List<MovieInfo> result) {
         adapter = new MovieAdapter(context, result, viewSize);
         view.setAdapter(adapter);
-        Log.d(THIS_FILE, "Adapter set");
+    }
+
+    @Override
+    public void setError(String error) {
+        Log.e(THIS_FILE, "ERROR: " + error);
+        this.error = error;
+    }
+
+    @Override
+    public boolean hasError() {
+        return error != null;
+    }
+
+    @Override
+    public String getError() {
+        return error;
     }
 
     public MovieAdapter getAdapter(){return adapter;}

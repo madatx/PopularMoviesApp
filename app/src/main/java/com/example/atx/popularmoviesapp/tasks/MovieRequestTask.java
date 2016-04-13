@@ -12,23 +12,27 @@ import java.util.List;
 
 public class MovieRequestTask extends AsyncTask<Void, Void, String> {
 
-    private IRequestHandler requestBuilder;
+    private IRequestHandler requestHandler;
     private IAsyncCallback callback;
 
     public MovieRequestTask(IAsyncCallback callback,
                             IRequestHandler builder){
         this.callback = callback;
-        this.requestBuilder = builder;
+        this.requestHandler = builder;
     }
 
     @Override
     protected String doInBackground(Void... params) {
-        return HttpApiConnector.request(requestBuilder);
+        return HttpApiConnector.request(requestHandler);
     }
 
     @Override
     protected void onPostExecute(String s) {
-        List<MovieInfo> result = requestBuilder.parseResponse(s);
+        List<MovieInfo> result = requestHandler.parseResponse(s);
         callback.setResult(result);
+
+        if ((result == null) || result.isEmpty()){
+            callback.setError("Connection error: server is unavailable!");
+        }
     }
 }
