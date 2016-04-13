@@ -1,6 +1,7 @@
 package com.example.atx.popularmoviesapp;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -16,10 +17,17 @@ public class MovieAdapter extends BaseAdapter {
 
     private Context context;
     private List<MovieInfo> movies;
+    private int width;
 
-    public MovieAdapter(Context context, List<MovieInfo> movies){
+    public MovieAdapter(Context context, List<MovieInfo> movies, int width){
         this.context = context;
         this.movies = movies;
+        this.width = width;
+    }
+
+    public void refreshData(List<MovieInfo> movies){
+        this.movies = movies;
+        this.notifyDataSetChanged();
     }
 
     @Override
@@ -42,16 +50,15 @@ public class MovieAdapter extends BaseAdapter {
         ImageView imageView;
         if (convertView == null){
             imageView = new ImageView(context);
-            imageView.setLayoutParams(new GridView.LayoutParams(500, 700));
-            //imageView.setLayoutParams(parent.getLayoutParams());
+            imageView.setLayoutParams(new GridView.LayoutParams(width, Math.round(width * (float) 1.5)));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            //imageView.setPadding(8, 8, 8, 8);
         } else {
             imageView = (ImageView) convertView;
         }
 
         MovieInfo info = movies.get(position);
         HttpApiConnector.setSourceImage(context, info.imageLink, imageView);
+
         return imageView;
     }
 }

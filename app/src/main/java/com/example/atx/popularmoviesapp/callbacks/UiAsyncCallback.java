@@ -16,17 +16,21 @@ public class UiAsyncCallback implements IAsyncCallback {
     private MovieAdapter adapter;
     private GridView view;
     private Context context;
+    private int viewSize;
 
-    public UiAsyncCallback(Context context, GridView view){
+    public UiAsyncCallback(Context context, GridView view, int viewSize){
         this.view = view;
         this.context = context;
+        this.viewSize = viewSize;
     }
 
     private static String THIS_FILE = UiAsyncCallback.class.getName();
     @Override
     public void setResult(List<MovieInfo> result) {
-        adapter = new MovieAdapter(context, result);
+        adapter = new MovieAdapter(context, result, viewSize);
         view.setAdapter(adapter);
         Log.d(THIS_FILE, "Adapter set");
     }
+
+    public MovieAdapter getAdapter(){return adapter;}
 }
