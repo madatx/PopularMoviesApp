@@ -31,6 +31,7 @@ public class HttpApiConnector {
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 
+
             InputStream iStream = connection.getInputStream();
             StringBuffer buffer = new StringBuffer();
             if (iStream == null){
@@ -55,6 +56,7 @@ public class HttpApiConnector {
                 connection.disconnect();
             }
             closeNoException(reader);
+
         }
         return result;
     }
@@ -63,7 +65,9 @@ public class HttpApiConnector {
         if (toClose == null) return;
         try {
             toClose.close();
-        } catch (IOException e) {}
+        } catch (IOException e) {
+            Log.e(THIS_FILE, "Error", e);
+        }
     }
 
     public static String request(IRequestHandler builder){

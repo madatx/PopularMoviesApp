@@ -4,6 +4,7 @@ package com.example.atx.popularmoviesapp.callbacks;
 import android.content.Context;
 import android.util.Log;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.example.atx.popularmoviesapp.MovieAdapter;
 import com.example.atx.popularmoviesapp.MovieInfo;
@@ -36,6 +37,7 @@ public class UiAsyncCallback implements IAsyncCallback {
     public void setError(String error) {
         Log.e(THIS_FILE, "ERROR: " + error);
         this.error = error;
+        Toast.makeText(context, error, Toast.LENGTH_LONG).show();
     }
 
     @Override

@@ -46,7 +46,6 @@ public class PopularMoviesFragment extends Fragment {
                 ThemovieDBRequestHandler.MODE_POPULAR);
 
         new MovieRequestTask(callback, builder).execute();
-
     }
 
     private int getImageWidth(){

@@ -70,7 +70,7 @@ public class ThemovieDBRequestHandler implements IRequestHandler {
                 Log.d(THIS_FILE, info.title +" " + info.rating + " " + info.imageLink);
                 res.add(info);
             }
-        } catch (JSONException ex) {
+        } catch (Exception ex) {
             Log.e(THIS_FILE, "Json parse error", ex);
             ex.printStackTrace();
         }
