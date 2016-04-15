@@ -1,12 +1,18 @@
 package com.example.atx.popularmoviesapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -25,27 +31,67 @@ import com.example.atx.popularmoviesapp.utils.Utils.*;
 public class PopularMoviesFragment extends Fragment {
 
 
-    private MovieAdapter adapter = null;
+    private GridView gridView;
+    //private MovieAdapter adapter = null;
     private static final String THIS_FILE = PopularMoviesFragment.class.getName();
     public PopularMoviesFragment() {
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        refresh();
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_popular_movies, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            Intent intent = new Intent(getActivity(), SettingsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        if (id == R.id.action_refresh) {
+            refresh();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void refresh(){
-        IAsyncCallback callback = new UiRefreshAsyncCallback(adapter);
+        IAsyncCallback callback = new UiRefreshAsyncCallback(gridView);
         refreshGrid(callback);
     }
 
     public void refreshGrid(IAsyncCallback callback){
+        String requestMode = getPreference();
         String key = ApiKeySource.getApiKey(getActivity());
         IRequestHandler builder = new ThemovieDBRequestHandler(key,
-                ThemovieDBRequestHandler.MODE_POPULAR);
+                requestMode);
 
         new MovieRequestTask(callback, builder).execute();
+    }
+
+    private String getPreference(){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String res = prefs.getString(
+                getString(R.string.prefs_request_mode_key),
+                ThemovieDBRequestHandler.MODE_POPULAR);
+        return res;
     }
 
     private int getImageWidth(){
@@ -62,7 +108,7 @@ public class PopularMoviesFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_popular_movies, container, false);
 
-        final GridView gridView = (GridView) v.findViewById(R.id.movies_grid_view);
+        gridView = (GridView) v.findViewById(R.id.movies_grid_view);
         IAsyncCallback callback = new UiAsyncCallback(getActivity(), gridView, getImageWidth());
 
         refreshGrid(callback);
@@ -72,8 +118,6 @@ public class PopularMoviesFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MovieAdapter adapter = (MovieAdapter) gridView.getAdapter();
                 MovieInfo item = (MovieInfo) adapter.getItem(position);
-//                String str = "ITEM CLICKED: " + item.title + " " + item.releaseDate;
-//                Toast.makeText(getActivity(), str, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getActivity(), DetailedMovieActivity.class);
                 intent.putExtra(MovieIntentInfo.TITLE, item.title);
@@ -84,9 +128,6 @@ public class PopularMoviesFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-
-        adapter = (MovieAdapter)gridView.getAdapter();
 
         return v;
     }

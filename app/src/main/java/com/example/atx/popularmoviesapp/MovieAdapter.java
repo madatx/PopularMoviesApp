@@ -27,7 +27,6 @@ public class MovieAdapter extends BaseAdapter {
 
     public void refreshData(List<MovieInfo> movies){
         this.movies = movies;
-        this.notifyDataSetChanged();
     }
 
     @Override
