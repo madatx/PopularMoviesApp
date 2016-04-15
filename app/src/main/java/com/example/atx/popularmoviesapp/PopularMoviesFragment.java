@@ -2,6 +2,7 @@ package com.example.atx.popularmoviesapp;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Parcel;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -120,11 +121,13 @@ public class PopularMoviesFragment extends Fragment {
                 MovieInfo item = (MovieInfo) adapter.getItem(position);
 
                 Intent intent = new Intent(getActivity(), DetailedMovieActivity.class);
-                intent.putExtra(MovieIntentInfo.TITLE, item.title);
-                intent.putExtra(MovieIntentInfo.OVERVIEW, item.description);
-                intent.putExtra(MovieIntentInfo.POSTER, item.imageLink);
-                intent.putExtra(MovieIntentInfo.DATE, item.releaseDate);
-                intent.putExtra(MovieIntentInfo.VOTE, item.rating);
+                intent.putExtra(MovieInfo.class.getCanonicalName(), item);
+
+//                intent.putExtra(MovieIntentInfo.TITLE, item.title);
+//                intent.putExtra(MovieIntentInfo.OVERVIEW, item.description);
+//                intent.putExtra(MovieIntentInfo.POSTER, item.imageLink);
+//                intent.putExtra(MovieIntentInfo.DATE, item.releaseDate);
+//                intent.putExtra(MovieIntentInfo.VOTE, item.rating);
                 startActivity(intent);
             }
         });
