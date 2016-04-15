@@ -29,11 +29,11 @@ import com.example.atx.popularmoviesapp.tasks.MovieRequestTask;
 import com.example.atx.popularmoviesapp.utils.ApiKeySource;
 import com.example.atx.popularmoviesapp.utils.Utils.*;
 
-public class PopularMoviesFragment extends Fragment {
+public class PopularMoviesFragment extends Fragment implements
+        SharedPreferences.OnSharedPreferenceChangeListener{
 
 
     private GridView gridView;
-    //private MovieAdapter adapter = null;
     private static final String THIS_FILE = PopularMoviesFragment.class.getName();
     public PopularMoviesFragment() {
     }
@@ -41,7 +41,6 @@ public class PopularMoviesFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        refresh();
     }
 
     @Override
@@ -62,11 +61,6 @@ public class PopularMoviesFragment extends Fragment {
         if (id == R.id.action_settings) {
             Intent intent = new Intent(getActivity(), SettingsActivity.class);
             startActivity(intent);
-            return true;
-        }
-
-        if (id == R.id.action_refresh) {
-            refresh();
             return true;
         }
 
@@ -123,15 +117,27 @@ public class PopularMoviesFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), DetailedMovieActivity.class);
                 intent.putExtra(MovieInfo.class.getCanonicalName(), item);
 
-//                intent.putExtra(MovieIntentInfo.TITLE, item.title);
-//                intent.putExtra(MovieIntentInfo.OVERVIEW, item.description);
-//                intent.putExtra(MovieIntentInfo.POSTER, item.imageLink);
-//                intent.putExtra(MovieIntentInfo.DATE, item.releaseDate);
-//                intent.putExtra(MovieIntentInfo.VOTE, item.rating);
                 startActivity(intent);
             }
         });
 
+        PreferenceManager.getDefaultSharedPreferences(getActivity())
+                .registerOnSharedPreferenceChangeListener(this);
+
         return v;
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        PreferenceManager.getDefaultSharedPreferences(getActivity())
+                .unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        refresh();
+    }
+
+
 }
